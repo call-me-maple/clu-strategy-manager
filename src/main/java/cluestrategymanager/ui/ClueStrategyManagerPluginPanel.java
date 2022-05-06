@@ -49,9 +49,9 @@ public class ClueStrategyManagerPluginPanel extends PluginPanel
 
         setLayout(new BorderLayout());
 
-        for (ClueTier clueTier : ClueTier.CLUE_TIERS)
+        for (Tab tab : Tab.values())
         {
-            addTab(clueTier.getTab(), new ClueTierPanel(plugin, this, plugin.getClues(clueTier)));
+            addTab(tab, new ClueTierPanel(plugin, this, plugin.getClues(tab)));
         }
 
         add(clueSelectorGroup, BorderLayout.NORTH);

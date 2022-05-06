@@ -2,18 +2,12 @@ package cluestrategymanager.clues;
 
 import cluestrategymanager.ClueTier;
 import com.google.common.collect.ImmutableList;
-import lombok.Getter;
 
 import java.util.List;
 
-public class Hard extends Clue
+public class Hard
 {
-    @Getter
-    private static final List<Clue> clues = ImmutableList.of(
+    public static final List<Clue> CLUES = ImmutableList.of(
             new Clue("Hard place holder step", ClueTier.HARD)
     );
-    public Hard(String clueText)
-    {
-        super(clueText, ClueTier.HARD);
-    }
 }

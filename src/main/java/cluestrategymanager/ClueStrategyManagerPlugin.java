@@ -3,6 +3,7 @@ package cluestrategymanager;
 import cluestrategymanager.clues.*;
 import cluestrategymanager.ui.ClueStrategyManagerPluginPanel;
 import cluestrategymanager.ui.Tab;
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Provides;
@@ -57,6 +58,13 @@ public class ClueStrategyManagerPlugin extends Plugin
 	private NavigationButton navigationButton;
 
 	private Map<ClueTier, List<ClueStrategy>> clueStrategies;
+	private final Map<ClueTier, List<Clue>> allClues = ImmutableMap.<ClueTier, List<Clue>>builder()
+			.put(ClueTier.BEGINNER, Beginner.CLUES)
+			.put(ClueTier.EASY, Easy.CLUES)
+			.put(ClueTier.MEDIUM, Medium.CLUES)
+			.put(ClueTier.HARD, Hard.CLUES)
+			.put(ClueTier.ELITE, Elite.CLUES)
+			.build();
 
 	@Override
 	protected void startUp()
@@ -92,12 +100,14 @@ public class ClueStrategyManagerPlugin extends Plugin
 
 	private void readConfig()
 	{
-		for (ClueTier clueTier : ClueTier.CLUE_TIERS)
+		for (ClueTier clueTier : ClueTier.values())
 		{
 			clueStrategies.put(clueTier, new ArrayList<>());
 		}
 
 		final String storedSetups = configManager.getConfiguration(CONFIG_GROUP, CONFIG_KEY_CLUE_STRATEGIES);
+		initClueStrategies(); // todo remove line, testing
+
 		if (Strings.isNullOrEmpty(storedSetups))
 		{
 			log.debug("empty strats initing");
@@ -105,26 +115,26 @@ public class ClueStrategyManagerPlugin extends Plugin
 		}
 		else
 		{
-			log.debug("strats found loading");
-			// TODO ignore try catch for now
-			// try
-			Type type = new TypeToken<ArrayList<ClueStrategy>>() {}.getType();
-
-			List<ClueStrategy> clueStrategiesList = gson.fromJson(storedSetups, type);
-
-			List<Clue> missingClues = getAllClues();
-			for (ClueStrategy clueStrategy : clueStrategiesList)
-			{
-				clueStrategies.get(clueStrategy.getClue().getClueTier()).add(clueStrategy);
-				log.debug("{}", clueStrategy.getClue());
-				missingClues.remove(clueStrategy.getClue());
-			}
-			for (Clue clue : missingClues)
-			{
-				log.debug("missing clue adding new blank strat for {}", clue);
-				clueStrategies.get(clue.getClueTier()).add(new ClueStrategy(clue));
-			}
-			log.debug("loadeded {}", clueStrategies);
+			//log.debug("strats found loading");
+			//// TODO ignore try catch for now
+			//// try
+			//Type type = new TypeToken<ArrayList<ClueStrategy>>() {}.getType();
+			//
+			//List<ClueStrategy> clueStrategiesList = gson.fromJson(storedSetups, type);
+			//
+			//Map<ClueTier, List<Clue>> missingClues = ClueTier.getAllClues();
+			//for (ClueStrategy clueStrategy : clueStrategiesList)
+			//{
+			//	clueStrategies.get(clueStrategy.getClue().getClueTier()).add(clueStrategy);
+			//	log.debug("{}", clueStrategy.getClue());
+			//	missingClues.remove(clueStrategy.getClue());
+			//}
+			//for (Clue clue : missingClues)
+			//{
+			//	log.debug("missing clue adding new blank strat for {}", clue);
+			//	clueStrategies.get(clue.getClueTier()).add(new ClueStrategy(clue));
+			//}
+			//log.debug("loadeded {}", clueStrategies);
 		}
 	}
 
@@ -144,29 +154,19 @@ public class ClueStrategyManagerPlugin extends Plugin
 
 	private void initClueStrategies()
 	{
-		for (Clue clue : getAllClues())
+		for (ClueTier clueTier : allClues.keySet())
 		{
-			clueStrategies.get(clue.getClueTier()).add(new ClueStrategy(clue));
-		}
+			for (Clue clue : allClues.get(clueTier))
+			{
+				clueStrategies.get(clueTier).add(new ClueStrategy(clue));
+			}
 
+		}
 
 		log.debug("inited {}", clueStrategies);
 		//TODO compare to all clues defined
 		// for any missing clue strats, create either a default/suggested clue strat or an empty one (empty prolly ezier for now)
 	}
-
-	public List<Clue> getAllClues()
-	{
-		List<Clue> allClues = new ArrayList<>();
-		allClues.addAll(Beginner.getClues());
-		allClues.addAll(Easy.getClues());
-		allClues.addAll(Medium.getClues());
-		allClues.addAll(Hard.getClues());
-		allClues.addAll(Elite.getClues());
-		allClues.addAll(Master.getClues());
-		return allClues;
-	}
-
 
 	// TODO need to parse clue text from widget
 	@Subscribe
@@ -188,9 +188,9 @@ public class ClueStrategyManagerPlugin extends Plugin
 	}
 
 	// TODO this should return clue strats not clues
-	public List<ClueStrategy> getClues(ClueTier clueTier)
+	public List<ClueStrategy> getClues(Tab tab)
 	{
-		return clueStrategies.get(clueTier);
+		return clueStrategies.get(tab.getClueTier());
 	}
 
 	public void rebuildSidePanel()

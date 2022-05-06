@@ -1,22 +1,26 @@
 package cluestrategymanager.clues;
 
 import cluestrategymanager.ClueTier;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 public class Clue
 {
     @Getter
     private final String clueText;
 
     @Getter
-    private final ClueTier clueTier;
+    private final ClueTier tier;
+
+    Clue(String clueText, ClueTier tier)
+    {
+        this.clueText = clueText;
+        this.tier = tier;
+    }
 
     @Override
     public String toString()
     {
-        return clueTier.name() + ": " + clueText;
+        return clueText;
     }
 
     @Override
@@ -24,8 +28,7 @@ public class Clue
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((clueText == null) ? 0 : clueText.hashCode())
-                + ((clueTier == null) ? 0 : clueTier.hashCode());
+                + ((clueText == null) ? 0 : clueText.hashCode());
         return result;
     }
 
@@ -41,11 +44,6 @@ public class Clue
             return false;
 
         final Clue other = (Clue) obj;
-
-        if (clueTier != other.clueTier)
-        {
-            return false;
-        }
 
         if (clueText == null)
         {
