@@ -1,15 +1,7 @@
 package cluestrategymanager;
 
-import cluestrategymanager.clues.*;
-import cluestrategymanager.ui.Tab;
-import com.google.common.collect.ImmutableList;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @AllArgsConstructor
 public enum ClueTier

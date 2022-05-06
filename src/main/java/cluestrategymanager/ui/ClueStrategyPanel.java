@@ -123,7 +123,7 @@ public class ClueStrategyPanel extends JPanel
         nameActions.add(completableLabel, BorderLayout.CENTER);
         nameActions.add(editLabel, BorderLayout.WEST);
 
-        nameInput.setText(clueStrategy.getClue().getClueText());
+        nameInput.setText(clueStrategy.getStep().getText());
         nameInput.setBorder(null);
         nameInput.setEditable(false);
         nameInput.setBackground(ColorScheme.DARKER_GRAY_COLOR);

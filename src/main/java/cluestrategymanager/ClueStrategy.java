@@ -1,6 +1,6 @@
 package cluestrategymanager;
 
-import cluestrategymanager.clues.Clue;
+import cluestrategymanager.data.Step;
 import cluestrategymanager.transportation.Transportation;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.util.List;
 public class ClueStrategy
 {
     @Getter
-    private Clue clue;
+    private Step step;
 
     @Getter
     @Setter
@@ -29,9 +29,9 @@ public class ClueStrategy
     @Setter
     private List<ItemID> requiredItems;
 
-    public ClueStrategy(Clue clue)
+    public ClueStrategy(Step step)
     {
-        this.clue = clue;
+        this.step = step;
         this.hintText = "";
         this.transportation = null;
         this.completable = true;
@@ -40,6 +40,6 @@ public class ClueStrategy
     @Override
     public String toString()
     {
-        return "strategy: " + clue.toString() + " hint: " + hintText + " completable: " + completable;
+        return "strategy: " + step.toString() + " hint: " + hintText + " completable: " + completable;
     }
 }

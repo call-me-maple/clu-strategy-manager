@@ -1,7 +1,6 @@
 package cluestrategymanager.ui;
 
 import cluestrategymanager.ClueTier;
-import cluestrategymanager.clues.Clue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.ItemID;
@@ -16,8 +15,6 @@ public enum Tab
     HARD("Hard Clues", ItemID.CLUE_SCROLL_HARD, ClueTier.HARD),
     ELITE("Elite Clues", ItemID.CLUE_SCROLL_ELITE, ClueTier.ELITE),
     MASTER("Master Clues", ItemID.CLUE_SCROLL_MASTER, ClueTier.MASTER);
-
-    public static final Tab[] CLUE_TABS = {BEGINNER, EASY, MEDIUM, HARD, ELITE, MASTER};
 
     private final String name;
     private final int itemID;

@@ -3,7 +3,6 @@ package cluestrategymanager.ui;
 
 import cluestrategymanager.ClueStrategy;
 import cluestrategymanager.ClueStrategyManagerPlugin;
-import cluestrategymanager.clues.Clue;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
@@ -58,7 +57,7 @@ public class ClueTierPanel extends JPanel
             add(Box.createRigidArea(new Dimension(0, 10)), constraints);
             constraints.gridy++;
 
-            log.debug("added label {}", clueStrategy.getClue().getClueText());
+            log.debug("added label {}", clueStrategy.getStep().getText());
         }
         repaint();
         revalidate();
