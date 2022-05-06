@@ -33,7 +33,6 @@ import java.util.*;
 public class ClueStrategyManagerPlugin extends Plugin
 {
 	public static final String CONFIG_GROUP = "cluestrategymanager";
-	public static final String CONFIG_KEY_CLUE_STRATEGIES = "cluestrategies";
 
 	@Inject
 	private Client client;
@@ -97,8 +96,7 @@ public class ClueStrategyManagerPlugin extends Plugin
 			clueStrategies.put(clueTier, new ArrayList<>());
 		}
 
-		final String storedStrategies = configManager.getConfiguration(CONFIG_GROUP, CONFIG_KEY_CLUE_STRATEGIES);
-		//initClueStrategies(); // todo remove line, testing
+		final String storedStrategies = config.strategies();
 
 		if (Strings.isNullOrEmpty(storedStrategies))
 		{
@@ -139,7 +137,7 @@ public class ClueStrategyManagerPlugin extends Plugin
 		}
 
 		final String clueStrategiesJson = gson.toJson(clueStrategiesList);
-		configManager.setConfiguration(CONFIG_GROUP, CONFIG_KEY_CLUE_STRATEGIES, clueStrategiesJson);
+		config.saveStrategies(clueStrategiesJson);
 		log.debug("saved: {}", clueStrategiesJson);
 	}
 

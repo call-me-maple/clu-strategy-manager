@@ -26,4 +26,23 @@ public interface ClueStrategyManagerConfig extends Config
 			hidden = true
 	)
 	void setActiveTab(Tab t);
+
+	@ConfigItem(
+			keyName = "cluestrategies",
+			name = "Clue Strategies",
+			description = "Json list of Clue Strategies",
+			hidden = true
+	)
+	default String strategies()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			keyName = "cluestrategies",
+			name = "",
+			description = "",
+			hidden = true
+	)
+	void saveStrategies(String s);
 }
