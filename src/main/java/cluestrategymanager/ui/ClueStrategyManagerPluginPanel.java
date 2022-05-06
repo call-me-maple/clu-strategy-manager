@@ -2,9 +2,9 @@ package cluestrategymanager.ui;
 
 import cluestrategymanager.ClueStrategyManagerConfig;
 import cluestrategymanager.ClueStrategyManagerPlugin;
-import cluestrategymanager.ClueTier;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.game.ItemManager;
+import net.runelite.client.game.SpriteManager;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.ui.components.materialtabs.MaterialTab;
@@ -19,7 +19,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
@@ -41,7 +40,7 @@ public class ClueStrategyManagerPluginPanel extends PluginPanel
     @Nullable
     private ClueTierPanel activeTabPanel = null;
 
-    public ClueStrategyManagerPluginPanel(ClueStrategyManagerPlugin plugin, ItemManager itemManager, ClueStrategyManagerConfig config)
+    public ClueStrategyManagerPluginPanel(ClueStrategyManagerPlugin plugin, ItemManager itemManager, ClueStrategyManagerConfig config, SpriteManager spriteManager)
     {
         this.plugin = plugin;
         this.itemManager = itemManager;
@@ -51,7 +50,7 @@ public class ClueStrategyManagerPluginPanel extends PluginPanel
 
         for (Tab tab : Tab.values())
         {
-            addTab(tab, new ClueTierPanel(plugin, this, plugin.getClues(tab)));
+            addTab(tab, new ClueTierPanel(plugin, spriteManager, this, plugin.getClues(tab)));
         }
 
         add(clueSelectorGroup, BorderLayout.NORTH);
@@ -90,7 +89,7 @@ public class ClueStrategyManagerPluginPanel extends PluginPanel
             config.setActiveTab(tab);
             activeTabPanel = clueTierPanel;
 
-            clueTierPanel.update();
+            clueTierPanel.build();
             log.debug("selected {}", tab.getName());
             return true;
         });
@@ -116,7 +115,7 @@ public class ClueStrategyManagerPluginPanel extends PluginPanel
             return;
         }
 
-        SwingUtilities.invokeLater(activeTabPanel::update);
+        SwingUtilities.invokeLater(activeTabPanel::build);
     }
 
     @Override

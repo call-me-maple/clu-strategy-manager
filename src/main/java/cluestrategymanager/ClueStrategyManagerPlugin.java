@@ -1,21 +1,25 @@
 package cluestrategymanager;
 
 import cluestrategymanager.data.*;
+import cluestrategymanager.transportation.Spellbook;
 import cluestrategymanager.ui.ClueStrategyManagerPluginPanel;
 import cluestrategymanager.ui.Tab;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Provides;
 import javax.inject.Inject;
+import javax.swing.ImageIcon;
 
 import joptsimple.internal.Strings;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.WidgetLoaded;
+import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ItemManager;
+import net.runelite.client.game.SpriteManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
@@ -25,6 +29,7 @@ import net.runelite.client.util.ImageUtil;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @PluginDescriptor(
@@ -38,13 +43,16 @@ public class ClueStrategyManagerPlugin extends Plugin
 	private Client client;
 
 	@Inject
+	private ClientThread clientThread;
+
+	@Inject
 	private ClientToolbar clientToolbar;
 
 	@Inject
 	private ItemManager itemManager;
 
 	@Inject
-	private ConfigManager configManager;
+	SpriteManager spriteManager;
 
 	@Inject
 	private Gson gson;
@@ -65,8 +73,14 @@ public class ClueStrategyManagerPlugin extends Plugin
 		clueStrategies = new HashMap<>();
 		readConfig();
 		// try and read in config clue strats and
+		//BufferedImage test = spriteManager.getSprite(1584, 0);
+		clientThread.invoke(() ->
+		{
+			BufferedImage test = spriteManager.getSprite(Spellbook.LUNAR.getSpriteID(), 0);
+			ImageIcon testIcon = new ImageIcon(test);
+		});
 
-		pluginPanel = new ClueStrategyManagerPluginPanel(this, itemManager, config);
+		pluginPanel = new ClueStrategyManagerPluginPanel(this, itemManager, config, spriteManager);
 		pluginPanel.rebuild();
 
 		BufferedImage icon = ImageUtil.loadImageResource(ClueStrategyManagerPlugin.class, "/panel_icon.png");
@@ -118,12 +132,12 @@ public class ClueStrategyManagerPlugin extends Plugin
 				log.debug("{}", clueStrategy.getStep());
 				missingSteps.remove(clueStrategy.getStep());
 			}
+			log.debug("loadeded {}", clueStrategies);
 			for (Step clue : missingSteps)
 			{
 				log.debug("missing clue adding new blank strat for {}", clue);
 				clueStrategies.get(clue.getTier()).add(new ClueStrategy(clue));
 			}
-			log.debug("loadeded {}", clueStrategies);
 		}
 	}
 

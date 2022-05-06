@@ -4,6 +4,7 @@ package cluestrategymanager.ui;
 import cluestrategymanager.ClueStrategy;
 import cluestrategymanager.ClueStrategyManagerPlugin;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.game.SpriteManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,24 +16,26 @@ public class ClueTierPanel extends JPanel
     private ClueStrategyManagerPlugin plugin;
     private ClueStrategyManagerPluginPanel panel;
     private List<ClueStrategy> clueStrategies;
+    private SpriteManager spriteManager;
 
-    public ClueTierPanel(ClueStrategyManagerPlugin plugin, ClueStrategyManagerPluginPanel panel, List<ClueStrategy> clueStrategies)
+    public ClueTierPanel(ClueStrategyManagerPlugin plugin, SpriteManager spriteManager, ClueStrategyManagerPluginPanel panel, List<ClueStrategy> clueStrategies)
     {
         this.plugin = plugin;
         this.panel = panel;
         this.clueStrategies = clueStrategies;
+        this.spriteManager = spriteManager;
 
         setLayout(new GridBagLayout());
         build();
     }
 
-    public void update()
-    {
-    }
-
     public void editClueStrategy(ClueStrategy clueStrategy)
     {
         removeAll();
+        add(new ClueStrategyEditPanel(plugin, spriteManager,this, clueStrategy));
+
+        repaint();
+        revalidate();
     }
 
     public void build()

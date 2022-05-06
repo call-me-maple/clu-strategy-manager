@@ -105,6 +105,7 @@ public class ClueStrategyPanel extends JPanel
             public void mousePressed(MouseEvent mouseEvent)
             {
                 //open clue strat edit panel
+                panel.editClueStrategy(clueStrategy);
             }
 
             @Override
