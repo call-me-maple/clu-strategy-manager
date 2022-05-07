@@ -1,6 +1,6 @@
 package cluestrategymanager.ui;
 
-import cluestrategymanager.ClueTier;
+import cluestrategymanager.data.ClueTier;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.runelite.api.ItemID;

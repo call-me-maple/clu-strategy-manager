@@ -29,7 +29,6 @@ import net.runelite.client.util.ImageUtil;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Type;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @PluginDescriptor(

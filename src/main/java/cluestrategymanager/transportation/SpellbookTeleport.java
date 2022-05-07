@@ -1,9 +1,6 @@
 package cluestrategymanager.transportation;
 
-import cluestrategymanager.ClueTier;
-import cluestrategymanager.data.Step;
 import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.ImmutableSortedSet;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
 import net.runelite.api.SpriteID;
@@ -47,7 +44,7 @@ public enum SpellbookTeleport
     LUNAR_ICE_PLATEAU("Ice Plateau Teleport", Spellbook.LUNAR, SpriteID.SPELL_ICE_PLATEAU_TELEPORT),
     
     // Arceuus Spellbook
-    ARCEUUS_HOME("Arceuus Home Teleport", Spellbook.ARCEUUS, SpriteID.SPELL_LUMBRIDGE_HOME_TELEPORT),
+    ARCEUUS_HOME("Arceuus Home Teleport", Spellbook.ARCEUUS, 1251),
     ARCEUUS_LIBRARY("Arceuus Library Teleport", Spellbook.ARCEUUS, SpriteID.SPELL_ARCEUUS_LIBRARY_TELEPORT),
     ARCEUUS_DRAYNOR_MANOR("Draynor Manor Teleport", Spellbook.ARCEUUS, SpriteID.SPELL_DRAYNOR_MANOR_TELEPORT),
     ARCEUUS_BATTLEFRONT("Battlefront Teleport", Spellbook.ARCEUUS, SpriteID.SPELL_DRAYNOR_MANOR_TELEPORT),

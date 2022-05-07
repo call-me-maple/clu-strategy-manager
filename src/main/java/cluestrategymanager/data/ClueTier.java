@@ -1,4 +1,4 @@
-package cluestrategymanager;
+package cluestrategymanager.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

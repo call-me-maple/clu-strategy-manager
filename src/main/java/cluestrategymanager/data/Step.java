@@ -1,6 +1,5 @@
 package cluestrategymanager.data;
 
-import cluestrategymanager.ClueTier;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSortedSet;
 import lombok.Getter;
