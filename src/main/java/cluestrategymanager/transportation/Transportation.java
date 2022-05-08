@@ -1,14 +1,21 @@
 package cluestrategymanager.transportation;
 
-public class Transportation
-{
-    // TODO define this trans stuff
-    private String name;
-    private String hotkey;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import net.runelite.api.SpriteID;
 
-    Transportation(String name)
-    {
-        this.name = name;
-        this.hotkey = null;
-    }
+@Getter
+@AllArgsConstructor
+public enum Transportation
+{
+
+    SPELLBOOK_TELEPORT("Spellbook Teleport", SpriteID.TAB_MAGIC, SpellbookTeleport.class),
+    MINIGAME_TELEPORT("Minigame Teleport", SpriteID.MAP_ICON_MINIGAME, SpellbookTeleport.class),
+    ITEM_TELEPORT("Item Teleport", SpriteID.TAB_INVENTORY, SpellbookTeleport.class),
+    MAP_TRANSPORTATION("Map Transportation", SpriteID.MAP_ICON_TRANSPORTATION, SpellbookTeleport.class),
+    PLAYER_OWNED_HOUSE("Player Owned House", SpriteID.MAP_ICON_HOUSE_PORTAL, SpellbookTeleport.class);
+
+    private final String name;
+    private int spriteID;
+    private Class thing;
 }

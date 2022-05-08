@@ -30,6 +30,7 @@ public class ClueStrategyManagerPluginPanel extends PluginPanel
 
     private final ClueStrategyManagerPlugin plugin;
     private final ItemManager itemManager;
+    private final SpriteManager spriteManager;
     private final ClueStrategyManagerConfig config;
     private boolean active;
 
@@ -40,17 +41,18 @@ public class ClueStrategyManagerPluginPanel extends PluginPanel
     @Nullable
     private ClueTierPanel activeTabPanel = null;
 
-    public ClueStrategyManagerPluginPanel(ClueStrategyManagerPlugin plugin, ItemManager itemManager, ClueStrategyManagerConfig config, SpriteManager spriteManager)
+    public ClueStrategyManagerPluginPanel(ClueStrategyManagerPlugin plugin, ItemManager itemManager, SpriteManager spriteManager, ClueStrategyManagerConfig config)
     {
         this.plugin = plugin;
         this.itemManager = itemManager;
         this.config = config;
+        this.spriteManager = spriteManager;
 
         setLayout(new BorderLayout());
 
         for (Tab tab : Tab.values())
         {
-            addTab(tab, new ClueTierPanel(plugin, spriteManager, this, plugin.getClues(tab)));
+            addTab(tab, new ClueTierPanel(plugin, itemManager, spriteManager, this, plugin.getClues(tab)));
         }
 
         add(clueSelectorGroup, BorderLayout.NORTH);

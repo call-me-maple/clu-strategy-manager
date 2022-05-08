@@ -3,6 +3,7 @@ package cluestrategymanager;
 import cluestrategymanager.data.*;
 import cluestrategymanager.transportation.Spellbook;
 import cluestrategymanager.ui.ClueStrategyManagerPluginPanel;
+import cluestrategymanager.ui.ComboBoxIconEntry;
 import cluestrategymanager.ui.Tab;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,8 +25,10 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.AsyncBufferedImage;
 import net.runelite.client.util.ImageUtil;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -67,6 +70,8 @@ public class ClueStrategyManagerPlugin extends Plugin
 	@Override
 	protected void startUp()
 	{
+		// TODO test cats
+		//testCats();
 		log.info("Clue Strategy Manager started!");
 		// TODO init clue strats
 		clueStrategies = new HashMap<>();
@@ -79,7 +84,7 @@ public class ClueStrategyManagerPlugin extends Plugin
 			ImageIcon testIcon = new ImageIcon(test);
 		});
 
-		pluginPanel = new ClueStrategyManagerPluginPanel(this, itemManager, config, spriteManager);
+		pluginPanel = new ClueStrategyManagerPluginPanel(this, itemManager, spriteManager, config);
 		pluginPanel.rebuild();
 
 		BufferedImage icon = ImageUtil.loadImageResource(ClueStrategyManagerPlugin.class, "/panel_icon.png");
@@ -199,4 +204,23 @@ public class ClueStrategyManagerPlugin extends Plugin
 	{
 		pluginPanel.rebuild();
 	}
+
+
+	public void testCats()
+	{
+		Map<Integer, AsyncBufferedImage> icons = new HashMap<>();
+		Integer[] cats = {1561, 1562, 1563, 1564, 1565, 1566, 1567, 1568, 1569, 1570, 1571, 1572, 1555, 1556, 1557, 1558, 1559, 1560, 6555, 6556, 6557, 6558, 6559, 6560};
+		for (int cat : cats)
+		{
+			AsyncBufferedImage icon = itemManager.getImage(cat);
+			icon.onLoaded(() ->
+			{
+				log.debug("{} {}", icon, cat);
+				icons.put(cat, icon);
+				log.debug("{}", icons);
+			});
+		}
+
+	}
+
 }

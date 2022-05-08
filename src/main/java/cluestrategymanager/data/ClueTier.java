@@ -3,6 +3,7 @@ package cluestrategymanager.data;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@Getter
 @AllArgsConstructor
 public enum ClueTier
 {
@@ -13,6 +14,5 @@ public enum ClueTier
     ELITE("Elite Clue"),
     MASTER("Master Clue");
 
-    @Getter
     private final String name;
 }

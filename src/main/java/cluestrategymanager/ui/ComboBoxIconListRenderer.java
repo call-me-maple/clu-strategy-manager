@@ -19,6 +19,11 @@ public final class ComboBoxIconListRenderer extends JLabel implements ListCellRe
     @Setter
     private String defaultText = "Select an option...";
 
+    ComboBoxIconListRenderer(String defaultText)
+    {
+        this.defaultText = defaultText;
+    }
+
     @Override
     public Component getListCellRendererComponent(JList list, Object o, int index, boolean isSelected, boolean cellHasFocus)
     {

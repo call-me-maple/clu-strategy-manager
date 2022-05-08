@@ -10,8 +10,14 @@ import javax.swing.Icon;
 @Getter
 public class ComboBoxIconEntry
 {
-    private Icon icon;
-    private String text;
+    private final Icon icon;
+    private final String text;
     @Nullable
-    private Object data;
+    private final Object data;
+
+    @Override
+    public String toString()
+    {
+        return text;
+    }
 }
