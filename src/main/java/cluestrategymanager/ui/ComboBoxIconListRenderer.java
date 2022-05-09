@@ -64,6 +64,15 @@ public final class ComboBoxIconListRenderer extends JLabel implements ListCellRe
 
         setText(text);
 
+        // For rows with long text, add a textToolTip to view full text
+        if (text.length() > 28)
+        {
+            setToolTipText(text);
+        }
+        else
+        {
+            setToolTipText(null);
+        }
         return this;
     }
 }

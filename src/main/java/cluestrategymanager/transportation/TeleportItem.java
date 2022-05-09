@@ -6,9 +6,9 @@ import net.runelite.api.ItemID;
 
 @Getter
 @AllArgsConstructor
-public enum ItemTeleport
+public enum TeleportItem
 {
-    //Enchanted jewellery
+    // Enchanted jewellery
     GAMES_NECKLACE("Games necklace", ItemID.GAMES_NECKLACE1),
     RING_OF_DUELING("Ring of dueling", ItemID.RING_OF_DUELING1),
     RING_OF_LIFE("Ring of life", ItemID.RING_OF_LIFE),
@@ -144,7 +144,8 @@ public enum ItemTeleport
     SKULL_SCEPTRE("Skull sceptre", ItemID.SKULL_SCEPTRE),
     XERICS_TALISMAN("Xeric's talisman", ItemID.XERICS_TALISMAN),
     CHRONICLE("Chronicle", ItemID.CHRONICLE),
-    RING_OF_THE_ELEMENTS("Ring of the elements", ItemID.RING_OF_THE_ELEMENTS_26818);
+    RING_OF_THE_ELEMENTS("Ring of the elements", ItemID.RING_OF_THE_ELEMENTS_26818),
+    AMULET_OF_THE_EYE("Amulet of the Eye", ItemID.AMULET_OF_THE_EYE);
 
 
     private final String name;

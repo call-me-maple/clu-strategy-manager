@@ -1,22 +1,22 @@
 package cluestrategymanager.ui;
-import cluestrategymanager.transportation.ItemTeleport;
-import net.runelite.client.util.AsyncBufferedImage;
+import cluestrategymanager.transportation.TeleportItem;
 
-import java.awt.Image;
 import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.text.*;
 
 /* This work is hereby released into the Public Domain.
  * To view a copy of the public domain dedication, visit
  * http://creativecommons.org/licenses/publicdomain/
+ * http://www.orbital-computer.de/JComboBox/
  */
 public class AutoCompletion extends PlainDocument {
     JComboBox comboBox;
     ComboBoxModel model;
     JTextComponent editor;
+
     // flag to indicate if setSelectedItem has been called
 // subsequent calls to remove/insertString should be ignored
     boolean selecting=false;
@@ -118,8 +118,11 @@ public class AutoCompletion extends PlainDocument {
         if (selecting) return;
         // insert the string into the document
         super.insertString(offs, str, a);
+
+        String currentText = getText(0, getLength());
+
         // lookup and select a matching item
-        Object item = lookupItem(getText(0, getLength()));
+        Object item = lookupItem(currentText);
         if (item != null) {
             setSelectedItem(item);
         } else {
@@ -130,9 +133,28 @@ public class AutoCompletion extends PlainDocument {
             // provide feedback to the user that his input has been received but can not be accepted
             comboBox.getToolkit().beep(); // when available use: UIManager.getLookAndFeel().provideErrorFeedback(comboBox);
         }
+
+
         setText(item.toString());
         // select the completed part
         highlightCompletedText(offs+str.length());
+
+        List<Object> filterArray = new ArrayList<>();
+        for (int i = 0; i <= model.getSize(); i++)
+        {
+            Object currentElement = model.getElementAt(i);
+            if (currentElement == null)
+            {
+                continue;
+            }
+
+            if (currentElement.toString().contains(currentText))
+            {
+                filterArray.add(model.getElementAt(i));
+            }
+        }
+        //((DefaultComboBoxModel) model).removeAllElements();
+        //((DefaultComboBoxModel) model).addAll(filterArray);
     }
 
     private void setText(String text) {
@@ -185,12 +207,12 @@ public class AutoCompletion extends PlainDocument {
         //final JComboBox comboBox = new JComboBox(new Object[] {"Ester", "Jordi", "Jordina", "Jorge", "Sergi"});
 
         final JComboBox comboBox = new ComboBoxIcon("Select an Item...");
-        for (final ItemTeleport itemTeleport : ItemTeleport.values())
+        for (final TeleportItem teleportItem : TeleportItem.values())
         {
             final ComboBoxIconEntry entry = new ComboBoxIconEntry(
                     new ImageIcon(),
-                    itemTeleport.getName(),
-                    itemTeleport
+                    teleportItem.getName(),
+                    teleportItem
             );
             comboBox.addItem(entry);
         }
