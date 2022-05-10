@@ -17,7 +17,7 @@ public enum PohTeleport
     MOUNTED_MYTHS("Mounted Mythical cape", ItemID.MYTHICAL_CAPE),
     MOUNTED_XERICS("Mounted Xeric's Talisman", ItemID.MOUNTED_XERICS_TALISMAN),
     MOUNTED_DIGSITE("Mounted Digsite Pendant", ItemID.MOUNTED_DIGSITE_PENDANT),
-    CAPE_RACK("Cape Rack", ItemID.MARBLE_CAPE_RACK),
+    CAPE_HANGER("Cape Rack", ItemID.CAPE_HANGER),
     FAIRY_RING("Fairy Ring", ItemID.FAIRY_RING),
     SPIRIT_TREE("Spirit Tree", ItemID.SPIRIT_TREE_20635),
     OBELISK("Wilderness Obelisk", ItemID.OBELISK),

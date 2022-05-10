@@ -194,12 +194,26 @@ public class ClueStrategyEditPanel extends JPanel
                 );
                 pohDropdown.addItem(entry);
 
-                //if (clueStrategy.getTransportation() != null && clueStrategy.get().getPohTeleport() == pohTele)
-                //{
-                //    pohDropdown.setSelectedItem(entry);
-                //}
+                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getPohTeleport() == pohTele)
+                {
+                    pohDropdown.setSelectedItem(entry);
+                }
             });
         }
+        pohDropdown.addItemListener(e ->
+        {
+            if (e.getStateChange() == ItemEvent.SELECTED)
+            {
+                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
+                if (source.getData() instanceof PohTeleport)
+                {
+                    final PohTeleport pohTeleport = (PohTeleport) source.getData();
+                    log.debug("selected poh tele: {}", pohTeleport);
+                    log.debug("teles? {}", Transportation.POH_TELEPORT_MAP.get(pohTeleport));
+                    updateTeleportDropdown(Transportation.POH_TELEPORT_MAP.get(pohTeleport));
+                }
+            }
+        });
 
         itemDropdown = new ComboBoxIcon("Select an Item...");
         for (final TeleportItem teleportItem : TeleportItem.values())
@@ -359,50 +373,6 @@ public class ClueStrategyEditPanel extends JPanel
         }
     }
 
-
-    private void selectSpell(Spellbook spellbook)
-    {
-        teleportDropdown.removeAllItems();
-        for (final Transportation transportation : Transportation.SPELLBOOK_TELEPORT_MAP.get(spellbook))
-        {
-            spriteManager.getSpriteAsync(transportation.getSpriteID(), 0, sprite ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(sprite.getScaledInstance(COMBO_BOX_SPRITE_WIDTH, COMBO_BOX_SPRITE_HEIGHT, Image.SCALE_SMOOTH)),
-                        transportation.getName(),
-                        transportation
-                );
-                teleportDropdown.addItem(entry);
-            });
-        }
-
-        teleportDropdown.setSelectedIndex(-1);
-        dropdownTwoLayout.show(dropdownTwoContainer, SPELL_DROPDOWN_NAME);
-        dropdownTwoContainer.setVisible(true);
-    }
-
-    private void selectGrouping(Grouping grouping)
-    {
-        teleportDropdown.removeAllItems();
-        for (final Transportation transportation : Transportation.GROUPING_TELEPORT_MAP.get(grouping))
-        {
-            AsyncBufferedImage icon = itemManager.getImage(transportation.getItemID());
-            icon.onLoaded(() ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
-                        transportation.getName(),
-                        transportation
-                );
-                teleportDropdown.addItem(entry);
-            });
-        }
-
-        teleportDropdown.setSelectedIndex(-1);
-        dropdownTwoLayout.show(dropdownTwoContainer, SPELL_DROPDOWN_NAME);
-        dropdownTwoContainer.setVisible(true);
-    }
-
     private void updateTeleportDropdown(ImmutableCollection<Transportation> transportations)
     {
         teleportDropdown.removeAllItems();
@@ -428,18 +398,4 @@ public class ClueStrategyEditPanel extends JPanel
             teleportDropdown.setEnabled(false);
         }
     }
-
-    private void selectItem(TeleportItem item)
-    {
-        teleportDropdown.removeAllItems();
-        for (final Transportation transportation : Transportation.ITEM_TELEPORT_MAP.get(item))
-        {
-            teleportDropdown.addItem(teleportEntries.get(transportation));
-        }
-
-        teleportDropdown.setSelectedIndex(-1);
-        dropdownTwoLayout.show(dropdownTwoContainer, SPELL_DROPDOWN_NAME);
-        dropdownTwoContainer.setVisible(true);
-    }
-
 }

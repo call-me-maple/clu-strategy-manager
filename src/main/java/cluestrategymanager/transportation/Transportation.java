@@ -367,7 +367,240 @@ public enum Transportation
     RING_OF_THE_ELEMENTS_FIRE_ALTAR("Fire Altar", TeleportItem.RING_OF_THE_ELEMENTS, ItemID.RING_OF_THE_ELEMENTS_26818),
     RING_OF_THE_ELEMENTS_WATER_ALTAR("Water Altar", TeleportItem.RING_OF_THE_ELEMENTS, ItemID.RING_OF_THE_ELEMENTS_26818),
     RING_OF_THE_ELEMENTS_AIR_ALTAR("Air Altar", TeleportItem.RING_OF_THE_ELEMENTS, ItemID.RING_OF_THE_ELEMENTS_26818),
-    RING_OF_THE_ELEMENTS_EARTH_ALTAR("Earth Altar", TeleportItem.RING_OF_THE_ELEMENTS, ItemID.RING_OF_THE_ELEMENTS_26818);
+    RING_OF_THE_ELEMENTS_EARTH_ALTAR("Earth Altar", TeleportItem.RING_OF_THE_ELEMENTS, ItemID.RING_OF_THE_ELEMENTS_26818),
+
+
+    // POH Teleports
+    NEXUS_ARCEUUS_LIBRARY("Arceuus Library", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_DRAYNOR_MANOR("Draynor Manor", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_BATTLEFRONT("Battlefront", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_VARROCK("Varrock", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_GRAND_EXCHANGE("Grand Exchange", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_MIND_ALTAR("Mind Altar", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_LUMBRIDGE("Lumbridge", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_FALADOR("Falador", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_SALVE_GRAVEYARD("Salve Graveyard", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_CAMELOT("Camelot", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_SEERS_VILLAGE("Seers' Village", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_FENKENSTRAINS_CASTLE("Fenkenstrain's Castle", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_EAST_ARDOUGNE("East Ardougne", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_WATCHTOWER("Watchtower", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_YANILLE("Yanille", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_SENNTISTEN("Senntisten (Digsite)", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_WEST_ARDOUGNE("West Ardougne", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_MARIM("Marim (Ape Atoll)", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_HARMONY_ISLAND("Harmony Island", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_KHARYRLL("Kharyrll (Canifis)", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_LUNAR_ISLE("Lunar Isle", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_KOUREND_CASTLE("Kourend Castle", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_THE_FORGOTTEN_CEMETERY("The Forgotten Cemetery", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_WATERBIRTH_ISLAND("Waterbirth Island", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_BARROWS("Barrows", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_CARRALLANGAR("Carrallangar (Graveyard of Shadows)", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_FISHING_GUILD("Fishing Guild", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_CATHERBY("Catherby", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_ANNAKARL("Annakarl (Demonic Ruins)", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_APE_ATOLL_DUNGEON("Ape Atoll Dungeon", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_GHORROCK("Ghorrock (Frozen Waste Plateau)", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_TROLL_STRONGHOLD("Troll Stronghold", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+    NEXUS_WEISS("Weiss", PohTeleport.NEXUS, ItemID.CRYSTALLINE_PORTAL_NEXUS),
+
+    JEWELRY_BOX_AL_KHARID_DUEL_ARENA("Al Kharid Duel Arena", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_CASTLE_WARS_ARENA("Castle Wars Arena", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_FEROX_ENCLAVE("Ferox Enclave", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_BURTHORPE("Burthorpe", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_BARBARIAN_OUTPOST("Barbarian Outpost", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_CORPOREAL_BEAST("Corporeal Beast", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_CHASM_OF_TEARS("Chasm of Tears", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_WINTERTODT_CAMP("Wintertodt Camp", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_WARRIORS_GUILD("Warriors' Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_CHAMPIONS_GUILD("Champions' Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_EDGEVILLE_MONASTERY("Edgeville Monastery", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_RANGING_GUILD("Ranging Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_FISHING_GUILD("Fishing Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_MINING_GUILD("Mining Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_CRAFTING_GUILD("Crafting Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_COOKS_GUILD("Cooks' Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_WOODCUTTING_GUILD("Woodcutting Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_FARMING_GUILD("Farming Guild", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_MISCELLANIA("Miscellania", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_GRAND_EXCHANGE("Grand Exchange", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_FALADOR_PARK("Falador Park", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_DONDAKANS_ROCK("Dondakan's Rock", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_EDGEVILLE("Edgeville", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_KARAMJA("Karamja", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_DRAYNOR_VILLAGE("Draynor Village", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+    JEWELRY_BOX_AL_KHARID("Al Kharid", PohTeleport.JEWELRY_BOX, ItemID.ORNATE_JEWELLERY_BOX),
+
+    MOUNTED_GLORY_EDGEVILLE("Edgeville", PohTeleport.MOUNTED_GLORY, ItemID.AMULET_OF_GLORY1),
+    MOUNTED_GLORY_KARAMJA("Karamja", PohTeleport.MOUNTED_GLORY, ItemID.AMULET_OF_GLORY1),
+    MOUNTED_GLORY_DRAYNOR_VILLAGE("Draynor Village", PohTeleport.MOUNTED_GLORY, ItemID.AMULET_OF_GLORY1),
+    MOUNTED_GLORY_AL_KHARID("Al-Kharid", PohTeleport.MOUNTED_GLORY, ItemID.AMULET_OF_GLORY1),
+
+    MOUNTED_MYTHS("Mounted Mythical cape", PohTeleport.MOUNTED_MYTHS, ItemID.MYTHICAL_CAPE),
+
+    MOUNTED_XERICS_LOOKOUT("Xeric's Lookout", PohTeleport.MOUNTED_XERICS, ItemID.XERICS_TALISMAN),
+    MOUNTED_XERICS_GLADE("Xeric's Glade", PohTeleport.MOUNTED_XERICS, ItemID.XERICS_TALISMAN),
+    MOUNTED_XERICS_INFERNO("Xeric's Inferno", PohTeleport.MOUNTED_XERICS, ItemID.XERICS_TALISMAN),
+    MOUNTED_XERICS_HEART("Xeric's Heart", PohTeleport.MOUNTED_XERICS, ItemID.XERICS_TALISMAN),
+    MOUNTED_XERICS_HONOUR("Xeric's Honour", PohTeleport.MOUNTED_XERICS, ItemID.XERICS_TALISMAN),
+
+    MOUNTED_DIGSITE_PENDANT_DIGSITE("Digsite", PohTeleport.MOUNTED_DIGSITE, ItemID.DIGSITE_PENDANT_1),
+    MOUNTED_DIGSITE_PENDANT_HOUSE_ON_THE_HILL("House on the Hill", PohTeleport.MOUNTED_DIGSITE, ItemID.DIGSITE_PENDANT_1),
+    MOUNTED_DIGSITE_PENDANT_LITHKREN("Lithkren", PohTeleport.MOUNTED_DIGSITE, ItemID.DIGSITE_PENDANT_1),
+
+    CAPE_HANGER_CRAFTING_CAPE("Crafting Guild", PohTeleport.CAPE_HANGER, ItemID.CRAFTING_CAPET),
+    CAPE_HANGER_FARMING_CAPE("Farming Guild", PohTeleport.CAPE_HANGER, ItemID.FARMING_CAPET),
+    CAPE_HANGER_STRENGTH_CAPE("Warriors' Guild", PohTeleport.CAPE_HANGER, ItemID.STRENGTH_CAPET),
+    CAPE_HANGER_QUEST_POINT_CAPE("Legends' Guild", PohTeleport.CAPE_HANGER, ItemID.QUEST_POINT_CAPE_T),
+    CAPE_HANGER_MUSIC_CAPE("Falo the Bard", PohTeleport.CAPE_HANGER, ItemID.MUSIC_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_RIMMINGTON("Rimmington", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_TAVERLEY ("Taverley ", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_POLLNIVNEACH("Pollnivneach", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_HOSIDIUS("Hosidius", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_RELLEKKA ("Rellekka ", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_BRIMHAVEN("Brimhaven", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_YANILLE("Yanille", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_CONSTRUCT_CAPE_PRIFDDINAS("Prifddinas", PohTeleport.CAPE_HANGER, ItemID.CONSTRUCT_CAPET),
+    CAPE_HANGER_FISHING_CAPE_FISHING_GUILD("Fishing Guild", PohTeleport.CAPE_HANGER, ItemID.FISHING_CAPET),
+    CAPE_HANGER_FISHING_CAPE_OTTOS_GROTTO("Otto's Grotto", PohTeleport.CAPE_HANGER, ItemID.FISHING_CAPET),
+    CAPE_HANGER_HUNTER_CAPE_BLACK_CHINCHOMPAS("Black chinchompas", PohTeleport.CAPE_HANGER, ItemID.HUNTER_CAPET),
+    CAPE_HANGER_HUNTER_CAPE_RED_CHINCHOMPAS("Red chinchompas", PohTeleport.CAPE_HANGER, ItemID.HUNTER_CAPET),
+
+    // Probably not needed to show max cape versions of these tele
+    CAPE_HANGER_MAX_CAPE_CRAFTING("Crafting Guild", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_RIMMINGTON("Rimmington", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_TAVERLEY ("Taverley ", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_POLLNIVNEACH("Pollnivneach", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_HOSIDIUS("Hosidius", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_RELLEKKA ("Rellekka ", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_BRIMHAVEN("Brimhaven", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_YANILLE("Yanille", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_CONSTRUCT_PRIFDDINAS("Prifddinas", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_FISHING_GUILD("Fishing Guild", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_OTTOS_GROTTO("Otto's Grotto", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_FARMING("Farming Guild", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_BLACK_CHINCHOMPAS("Black chinchompas", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_RED_CHINCHOMPAS("Red chinchompas", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+    CAPE_HANGER_MAX_CAPE_STRENGTH("Warriors' Guild", PohTeleport.CAPE_HANGER, ItemID.MAX_CAPE),
+
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_TWO_PINTS("Two-pints", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_JARR("Jarr", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_SIR_REBRAL("Sir Rebral", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_THORODIN("Thorodin", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_FLAX_KEEPER("Flax keeper", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_PIRATE_JACKIE_THE_FRUIT("Pirate Jackie the Fruit", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_KALEB_PARAMAYA("Kaleb Paramaya", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_JUNGLE_FORESTER("Jungle forester", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_TZHAAR_MEJ("TzHaar-Mej", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_ELISE("Elise", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_HATIUS_COSAINTUS("Hatius Cosaintus", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_LE_SABRE("Le-sabrè", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_TOBY("Toby", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_LESSER_FANATIC("Lesser Fanatic", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_ELDER_GNOME_CHILD("Elder Gnome child", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+    CAPE_HANGER_ACHIEVEMENT_DIARY_CAPE_TWIGGY_OKORN("Twiggy O'Korn", PohTeleport.CAPE_HANGER, ItemID.ACHIEVEMENT_DIARY_CAPE_T),
+
+    POH_FAIRY_RING_AIQ("AIQ (Asgarnia: Mudskipper Point)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_AIR("AIR (Islands: South-east of Ardougne)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_AJQ("AJQ (Dungeons: Cave south of Dorgesh-Kaan)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_AJR("AJR (Kandarin: Slayer cave south-east of Rellekka)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_AJS("AJS (Islands: Penguins near Miscellania.)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_AKP("AKP (Kharidian Desert: Necropolis)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_AKQ("AKQ (Kandarin: Piscatoris Hunter area)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_AKS("AKS (Feldip Hills: Feldip Hunter area)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_ALP("ALP (Islands: Lighthouse)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_ALQ("ALQ (Morytania: Haunted Woods east of Canifis)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_ALR("ALR (Other Realms: Abyssal Area)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_ALS("ALS (Kandarin: McGrubor's Wood)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BIP("BIP (Islands: South-west of Mort Myre)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BIQ("BIQ (Kharidian Desert near Kalphite Hive.)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BIS("BIS (Kandarin: Ardougne Zoo - Unicorns)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BJR("BJR (Other Realms: Realm of the Fisher King)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BJS("BJS (Islands: Near Zul-Andra)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BKP("BKP (Feldip Hills: South of Castle Wars)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BKQ("BKQ (Other Realms: Enchanted Valley)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BKR("BKR (Morytania: Mort Myre Swamp, south of Canifis)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BKS("BKS (Other Realms: Zanaris)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BLP("BLP (Dungeons: TzHaar area)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BLR("BLR (Kandarin: Legends' Guild)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_BLQ("BLQ (Other Realms: Yu'biusk)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CIP("CIP (Islands: Miscellania)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CIQ("CIQ (Kandarin: North-west of Yanille)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CIR("CIR (Kebos Lowlands: South of Mount Karuulm)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CIS("CIS (Great Kourend: Arceuus Library)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CJR("CJR (Kandarin: Sinclair Mansion (east))", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CKP("CKP (Other Realms: Cosmic entity's plane)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CKR("CKR (Karamja: South of Tai Bwo Wannai Village)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CKS("CKS (Morytania: Canifis)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CLP("CLP (Islands: South of Draynor Village)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CLR("CLR (Islands: Ape Atoll)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_CLS("CLS (Islands: Hazelmere's home)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DIP("DIP (Other Realms: Abyssal Nexus)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DIQ("DIQ (Player-owned house Superior Garden)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DIR("DIR (Other Realms: Gorak's Plane)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DIS("DIS (Misthalin: Wizards' Tower)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DJP("DJP (Kandarin: Tower of Life)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DJR("DJR (Great Kourend: Chasm of Fire)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DKP("DKP (Karamja: Gnome Glider)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DKR("DKR (Misthalin: Edgeville)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DKS("DKS (Fremennik: Polar Hunter area)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DLQ("DLQ (Kharidian Desert: North of Nardah)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DLR("DLR (Islands: Poison Waste south of Isafdar)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+    POH_FAIRY_RING_DLS("DLS (Dungeons: Myreque hideout under The Hollows)", PohTeleport.FAIRY_RING, ItemID.FAIRY_RING),
+
+    POH_SPIRIT_TREE_TREE_GNOME_VILLAGE("Tree Gnome Village", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_GNOME_STRONGHOLD("Gnome Stronghold", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_BATTLEFIELD_OF_KHAZARD("Battlefield of Khazard", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_GRAND_EXCHANGE("Grand Exchange", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_FELDIP_HILLS("Feldip Hills", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_PRIFDDINAS("Prifddinas", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_PORT_SARIM("Port Sarim", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_ETCETERIA("Etceteria", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_BRIMHAVEN("Brimhaven", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_HOSIDIUS("Hosidius", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+    POH_SPIRIT_TREE_FARMING_GUILD("Farming Guild", PohTeleport.SPIRIT_TREE, ItemID.SPIRIT_TREE_20635),
+
+    OBELISK_LEVEL_13("Wilderness Level 13 (South-east of the Ferox Enclave)", PohTeleport.OBELISK, ItemID.OBELISK),
+    OBELISK_LEVEL_19("Wilderness Level 19 (East of the Graveyard of Shadows)", PohTeleport.OBELISK, ItemID.OBELISK),
+    OBELISK_LEVEL_27("Wilderness Level 27 (South of the Wilderness God Wars Dungeon entrance)", PohTeleport.OBELISK, ItemID.OBELISK),
+    OBELISK_LEVEL_35("Wilderness Level 35 (South of the Lava Maze)", PohTeleport.OBELISK, ItemID.OBELISK),
+    OBELISK_LEVEL_44("Wilderness Level 44 (West of the Lava Maze)", PohTeleport.OBELISK, ItemID.OBELISK),
+    OBELISK_LEVEL_50("Wilderness Level 50 (Near the Rogues' Castle and the Chaos Elemental)", PohTeleport.OBELISK, ItemID.OBELISK),
+
+    POH_PORTAL_ARCEUUS_LIBRARY("Arceuus Library", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_DRAYNOR_MANOR("Draynor Manor", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_BATTLEFRONT("Battlefront", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_VARROCK("Varrock", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_GRAND_EXCHANGE("Grand Exchange", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_MIND_ALTAR("Mind Altar", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_LUMBRIDGE("Lumbridge", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_FALADOR("Falador", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_SALVE_GRAVEYARD("Salve Graveyard", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_CAMELOT("Camelot", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_SEERS_VILLAGE("Seers' Village", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_FENKENSTRAINS_CASTLE("Fenkenstrain's Castle", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_EAST_ARDOUGNE("East Ardougne", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_WATCHTOWER("Watchtower", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_YANILLE("Yanille", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_SENNTISTEN("Senntisten (Digsite)", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_WEST_ARDOUGNE("West Ardougne", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_MARIM("Marim (Ape Atoll)", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_HARMONY_ISLAND("Harmony Island", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_KHARYRLL("Kharyrll (Canifis)", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_LUNAR_ISLE("Lunar Isle", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_KOUREND_CASTLE("Kourend Castle", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_CEMETERY("Cemetery (The Forgotten Cemetery)", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_WATERBIRTH_ISLAND("Waterbirth Island", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_BARROWS("Barrows", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_CARRALANGAR("Carralangar (Graveyard of Shadows)", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_FISHING_GUILD("Fishing Guild", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_CATHERBY("Catherby", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_ANNAKARL("Annakarl (Demonic Ruins)", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_APE_ATOLL_DUNGEON("Ape Atoll Dungeon", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_GHORROCK("Ghorrock (Frozen Waste Plateau)", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_TROLL_STRONGHOLD("Troll Stronghold", PohTeleport.PORTAL, 8330),
+    POH_PORTAL_WEISS("Weiss", PohTeleport.PORTAL, 8330);
 
 
     private final String name;
@@ -377,6 +610,7 @@ public enum Transportation
     private final Spellbook spellbook;
     private final Grouping grouping;
     private final TeleportItem teleportItem;
+    private final PohTeleport pohTeleport;
 
     private final int spriteID;
     private final int itemID;
@@ -384,12 +618,15 @@ public enum Transportation
     public static final ImmutableMultimap<Spellbook, Transportation> SPELLBOOK_TELEPORT_MAP;
     public static final ImmutableMultimap<Grouping, Transportation> GROUPING_TELEPORT_MAP;
     public static final ImmutableMultimap<TeleportItem, Transportation> ITEM_TELEPORT_MAP;
+    public static final ImmutableMultimap<PohTeleport, Transportation> POH_TELEPORT_MAP;
 
     static
     {
         final ImmutableMultimap.Builder<Spellbook, Transportation> spellbookBuilder = ImmutableMultimap.builder();
         final ImmutableMultimap.Builder<Grouping, Transportation> groupingBuilder = ImmutableMultimap.builder();
         final ImmutableMultimap.Builder<TeleportItem, Transportation> teleportItemBuilder = ImmutableMultimap.builder();
+        final ImmutableMultimap.Builder<PohTeleport, Transportation> pohTeleportBuilder = ImmutableMultimap.builder();
+
 
         for (final Transportation transportation : values())
         {
@@ -405,11 +642,15 @@ public enum Transportation
             {
                 teleportItemBuilder.put(transportation.getTeleportItem(), transportation);
             }
-
+            if (transportation.getPohTeleport() != null)
+            {
+                pohTeleportBuilder.put(transportation.getPohTeleport(), transportation);
+            }
         }
         SPELLBOOK_TELEPORT_MAP = spellbookBuilder.build();
         GROUPING_TELEPORT_MAP = groupingBuilder.build();
         ITEM_TELEPORT_MAP = teleportItemBuilder.build();
+        POH_TELEPORT_MAP = pohTeleportBuilder.build();
     }
 
     Transportation(String name, Spellbook spellbook, int spriteID)
@@ -420,6 +661,7 @@ public enum Transportation
 
         this.grouping = null;
         this.teleportItem = null;
+        this.pohTeleport = null;
         this.itemID = -1;
         this.transportationMethod = TransportationMethod.SPELLBOOK_TELEPORT;
     }
@@ -431,6 +673,7 @@ public enum Transportation
 
         this.spellbook = null;
         this.teleportItem = null;
+        this.pohTeleport = null;
         this.spriteID = -1;
         this.transportationMethod = TransportationMethod.GROUPING_TELEPORT;
     }
@@ -443,7 +686,21 @@ public enum Transportation
 
         this.spellbook = null;
         this.grouping = null;
+        this.pohTeleport = null;
         this.spriteID = -1;
         this.transportationMethod = TransportationMethod.ITEM_TELEPORT;
+    }
+
+    Transportation(String name, PohTeleport pohTeleport, int itemID)
+    {
+        this.name = name;
+        this.pohTeleport = pohTeleport;
+        this.itemID = itemID;
+
+        this.spellbook = null;
+        this.grouping = null;
+        this.teleportItem = null;
+        this.spriteID = -1;
+        this.transportationMethod = TransportationMethod.PLAYER_OWNED_HOUSE;
     }
 }
