@@ -1,4 +1,4 @@
-package cluestrategymanager.transportation;
+package cluestrategymanager.data.transportation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,5 +16,9 @@ public enum Spellbook
     private final String name;
     private final int spriteID;
 
-
+    @Override
+    public String toString()
+    {
+        return this.name;
+    }
 }

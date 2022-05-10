@@ -3,13 +3,13 @@ package cluestrategymanager.ui;
 
 import cluestrategymanager.ClueStrategy;
 import cluestrategymanager.ClueStrategyManagerPlugin;
-import cluestrategymanager.transportation.Transportation;
+import cluestrategymanager.ClueStrategyManagerPluginPanel;
+import cluestrategymanager.data.transportation.Transportation;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Constants;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.ui.PluginPanel;
-import net.runelite.client.ui.overlay.components.ComponentConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +40,7 @@ public class ClueTierPanel extends JPanel
         setLayout(new BorderLayout());
 
         // TODO testing auto populate
-        clueStrategy.setTransportation(Transportation.NARDAH_TELEPORT);
+        //clueStrategy.setTransportation(Transportation.NARDAH_TELEPORT);
         add(new ClueStrategyEditPanel(plugin, itemManager, spriteManager,this, clueStrategy), BorderLayout.CENTER);
 
         repaint();

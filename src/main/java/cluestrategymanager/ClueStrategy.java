@@ -1,7 +1,7 @@
 package cluestrategymanager;
 
-import cluestrategymanager.data.Step;
-import cluestrategymanager.transportation.Transportation;
+import cluestrategymanager.data.clue.Step;
+import cluestrategymanager.data.transportation.Transportation;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.ItemID;

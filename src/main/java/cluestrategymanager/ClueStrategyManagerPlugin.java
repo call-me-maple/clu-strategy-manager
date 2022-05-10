@@ -1,9 +1,8 @@
 package cluestrategymanager;
 
-import cluestrategymanager.data.*;
-import cluestrategymanager.transportation.Spellbook;
-import cluestrategymanager.ui.ClueStrategyManagerPluginPanel;
-import cluestrategymanager.ui.ComboBoxIconEntry;
+import cluestrategymanager.data.clue.ClueTier;
+import cluestrategymanager.data.transportation.Spellbook;
+import cluestrategymanager.data.clue.Step;
 import cluestrategymanager.ui.Tab;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -14,6 +13,7 @@ import javax.swing.ImageIcon;
 import joptsimple.internal.Strings;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.events.GameTick;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.client.callback.ClientThread;
@@ -22,13 +22,15 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.plugins.Plugin;
+import net.runelite.client.plugins.PluginDependency;
+import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.util.AsyncBufferedImage;
 import net.runelite.client.util.ImageUtil;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -36,7 +38,9 @@ import java.util.*;
 @Slf4j
 @PluginDescriptor(
 	name = "Clue Strategy Manager"
+
 )
+@PluginDependency(ClueScrollPlugin.class)
 public class ClueStrategyManagerPlugin extends Plugin
 {
 	public static final String CONFIG_GROUP = "cluestrategymanager";
@@ -62,6 +66,9 @@ public class ClueStrategyManagerPlugin extends Plugin
 	@Inject
 	private ClueStrategyManagerConfig config;
 
+	@Inject
+	private PluginManager pluginManager;
+
 	private ClueStrategyManagerPluginPanel pluginPanel;
 	private NavigationButton navigationButton;
 
@@ -71,18 +78,9 @@ public class ClueStrategyManagerPlugin extends Plugin
 	protected void startUp()
 	{
 		// TODO test cats
-		//testCats();
+		testCats();
 		log.info("Clue Strategy Manager started!");
-		// TODO init clue strats
-		clueStrategies = new HashMap<>();
 		readConfig();
-		// try and read in config clue strats and
-		//BufferedImage test = spriteManager.getSprite(1584, 0);
-		clientThread.invoke(() ->
-		{
-			BufferedImage test = spriteManager.getSprite(Spellbook.LUNAR.getSpriteID(), 0);
-			ImageIcon testIcon = new ImageIcon(test);
-		});
 
 		pluginPanel = new ClueStrategyManagerPluginPanel(this, itemManager, spriteManager, config);
 		pluginPanel.rebuild();
@@ -107,8 +105,16 @@ public class ClueStrategyManagerPlugin extends Plugin
 		log.info("Clue Strategy Manager stopped!");
 	}
 
+	@Subscribe
+	public void onGameTick(final GameTick event)
+	{
+		//testCats();
+	}
+
+
 	private void readConfig()
 	{
+		clueStrategies = new HashMap<>();
 		for (ClueTier clueTier : ClueTier.values())
 		{
 			clueStrategies.put(clueTier, new ArrayList<>());
@@ -208,19 +214,15 @@ public class ClueStrategyManagerPlugin extends Plugin
 
 	public void testCats()
 	{
-		Map<Integer, AsyncBufferedImage> icons = new HashMap<>();
-		Integer[] cats = {1561, 1562, 1563, 1564, 1565, 1566, 1567, 1568, 1569, 1570, 1571, 1572, 1555, 1556, 1557, 1558, 1559, 1560, 6555, 6556, 6557, 6558, 6559, 6560};
-		for (int cat : cats)
+		for (Plugin plugin : pluginManager.getPlugins())
 		{
-			AsyncBufferedImage icon = itemManager.getImage(cat);
-			icon.onLoaded(() ->
+			if (!(plugin instanceof ClueScrollPlugin))
 			{
-				log.debug("{} {}", icon, cat);
-				icons.put(cat, icon);
-				log.debug("{}", icons);
-			});
-		}
+				continue;
+			}
 
+			log.debug("lolol: {}",((ClueScrollPlugin) plugin).getClue());
+		}
 	}
 
 }

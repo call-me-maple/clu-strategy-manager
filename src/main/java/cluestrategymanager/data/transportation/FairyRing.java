@@ -1,4 +1,4 @@
-package cluestrategymanager.transportation;
+package cluestrategymanager.data.transportation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -58,4 +58,10 @@ public enum FairyRing
 
     private final String name;
     private final int itemID;
+
+    @Override
+    public String toString()
+    {
+        return this.name;
+    }
 }

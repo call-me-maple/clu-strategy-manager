@@ -2,7 +2,9 @@ package cluestrategymanager.ui;
 
 import cluestrategymanager.ClueStrategy;
 import cluestrategymanager.ClueStrategyManagerPlugin;
-import cluestrategymanager.transportation.*;
+import cluestrategymanager.data.transportation.*;
+import cluestrategymanager.ui.combobox.ComboBoxIcon;
+import cluestrategymanager.ui.combobox.ComboBoxIconEntry;
 import com.google.common.collect.ImmutableCollection;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.game.ItemManager;
@@ -70,284 +72,74 @@ public class ClueStrategyEditPanel extends JPanel
         setLayout(new GridBagLayout());
 
         loadTeleports();
+
+        // Transportation Methods Dropdown (1st row)
         transportationDropdown = new ComboBoxIcon("Select a Transport...");
         for (final TransportationMethod transportation : TransportationMethod.values())
         {
-            // TODO figure out something better here
             if (transportation.getSpriteID() != -1)
             {
-                spriteManager.getSpriteAsync(transportation.getSpriteID(), 0, sprite ->
-                {
-                    final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                            new ImageIcon(sprite.getScaledInstance(COMBO_BOX_SPRITE_WIDTH, COMBO_BOX_SPRITE_HEIGHT, Image.SCALE_SMOOTH)),
-                            transportation.getName(),
-                            transportation
-                    );
-                    transportationDropdown.addItem(entry);
-
-                    if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getTransportationMethod() == transportation)
-                    {
-                        transportationDropdown.setSelectedItem(entry);
-                    }
-                });
+                createSpriteEntry(transportation, transportationDropdown, transportation.getSpriteID());
             }
             else if (transportation.getItemID() != -1)
             {
-                AsyncBufferedImage icon = itemManager.getImage(transportation.getItemID());
-                icon.onLoaded(() ->
-                {
-                    final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                            new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
-                            transportation.getName(),
-                            transportation
-                    );
-                    transportationDropdown.addItem(entry);
-
-                    if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getTransportationMethod() == transportation)
-                    {
-                        transportationDropdown.setSelectedItem(entry);
-                    }
-                });
+                createItemEntry(transportation, transportationDropdown, transportation.getItemID());
             }
         }
-        transportationDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof TransportationMethod)
-                {
-                    final TransportationMethod transportation = (TransportationMethod) source.getData();
-                    log.debug("selected sb: {}", transportation);
-                    selectTransportationMethod(transportation);
-                }
-            }
-        });
+        transportationDropdown.addItemListener(this::entrySelected);
 
-        teleportDropdown = new ComboBoxIcon("Select a Teleport...");
-        teleportDropdown.setEnabled(true);
-        teleportDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof Transportation)
-                {
-                    final Transportation transportation = (Transportation) source.getData();
-                    log.debug("selected tele: {}", transportation);
-                    //clueStrategy.setTransportation(transportation);
-                }
-            }
-        });
-
+        // Spellbook Dropdown (2nd row)
         spellbookDropdown = new ComboBoxIcon("Select a Spellbook...");
         for (final Spellbook spellbook : Spellbook.values())
         {
-            spriteManager.getSpriteAsync(spellbook.getSpriteID(), 0, sprite ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(sprite.getScaledInstance(COMBO_BOX_SPRITE_WIDTH, COMBO_BOX_SPRITE_HEIGHT, Image.SCALE_SMOOTH)),
-                        spellbook.getName(),
-                        spellbook
-                );
-                spellbookDropdown.addItem(entry);
-
-                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getSpellbook() == spellbook)
-                {
-                    spellbookDropdown.setSelectedItem(entry);
-                }
-            });
+            createSpriteEntry(spellbook, spellbookDropdown, spellbook.getSpriteID());
         }
-        spellbookDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof Spellbook)
-                {
-                    final Spellbook spellbook = (Spellbook) source.getData();
-                    log.debug("selected sb: {}", spellbook);
-                    //selectSpell(spellbook);
-                    updateTeleportDropdown(Transportation.SPELLBOOK_TELEPORT_MAP.get(spellbook));
-                }
-            }
-        });
+        spellbookDropdown.addItemListener(this::entrySelected);
 
+        // Grouping Dropdown (2nd row)
         groupingDropdown = new ComboBoxIcon("Select a Grouping...");
         for (Grouping grouping : Grouping.values())
         {
-            AsyncBufferedImage icon = itemManager.getImage(grouping.getItemID());
-            icon.onLoaded(() ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
-                        grouping.getName(),
-                        grouping
-                );
-                groupingDropdown.addItem(entry);
-
-                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getGrouping() == grouping)
-                {
-                    groupingDropdown.setSelectedItem(entry);
-                }
-            });
+            createItemEntry(grouping, groupingDropdown, grouping.getItemID());
         }
-        groupingDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof Grouping)
-                {
-                    final Grouping grouping = (Grouping) source.getData();
-                    log.debug("selected item tele: {}", grouping);
-                    ///selectGrouping(grouping);
-                    updateTeleportDropdown(Transportation.GROUPING_TELEPORT_MAP.get(grouping));
-                }
-            }
-        });
+        groupingDropdown.addItemListener(this::entrySelected);
 
+        // Poh Method Dropdown (2nd row)
         pohDropdown = new ComboBoxIcon("Select a POH Teleport...");
         for (final PohTeleport pohTele : PohTeleport.values())
         {
-            AsyncBufferedImage icon = itemManager.getImage(pohTele.getItemID());
-            icon.onLoaded(() ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
-                        pohTele.getName(),
-                        pohTele
-                );
-                pohDropdown.addItem(entry);
-
-                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getPohTeleport() == pohTele)
-                {
-                    pohDropdown.setSelectedItem(entry);
-                }
-            });
+            createItemEntry(pohTele, pohDropdown, pohTele.getItemID());
         }
-        pohDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof PohTeleport)
-                {
-                    final PohTeleport pohTeleport = (PohTeleport) source.getData();
-                    log.debug("selected poh tele: {}", pohTeleport);
-                    log.debug("teles? {}", Transportation.POH_TELEPORT_MAP.get(pohTeleport));
-                    updateTeleportDropdown(Transportation.POH_TELEPORT_MAP.get(pohTeleport));
-                }
-            }
-        });
+        pohDropdown.addItemListener(this::entrySelected);
 
-        itemDropdown = new ComboBoxIcon("Select an Item...");
+        // Teleport Item Dropdown (2nd row)
+        itemDropdown = new ComboBoxIcon("Select an Item...", true, true);
         for (final TeleportItem teleportItem : TeleportItem.values())
         {
-            AsyncBufferedImage icon = itemManager.getImage(teleportItem.getItemID());
-            icon.onLoaded(() ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
-                        teleportItem.getName(),
-                        teleportItem
-                );
-                itemDropdown.addItem(entry);
-
-                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getTeleportItem() == teleportItem)
-                {
-                    itemDropdown.setSelectedItem(entry);
-                }
-            });
+            createItemEntry(teleportItem, itemDropdown, teleportItem.getItemID());
         }
-        AutoCompletion.enable(itemDropdown);
-        itemDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof TeleportItem)
-                {
-                    final TeleportItem item = (TeleportItem) source.getData();
-                    log.debug("selected item tele: {}", item);
-                    log.debug("teles? {}", Transportation.ITEM_TELEPORT_MAP.get(item));
-                    updateEditorIcon(source);
-                    // selectItem(item);
-                    updateTeleportDropdown(Transportation.ITEM_TELEPORT_MAP.get(item));
-                }
-            }
-        });
+        itemDropdown.addItemListener(this::entrySelected);
 
+        // Fairy Ring Dropdown (2nd row)
         fairyRingDropdown = new ComboBoxIcon("Select a Fairy Ring...");
         for (final FairyRing fairyRing : FairyRing.values())
         {
-            AsyncBufferedImage icon = itemManager.getImage(fairyRing.getItemID());
-            icon.onLoaded(() ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
-                        fairyRing.getName(),
-                        fairyRing
-                );
-                fairyRingDropdown.addItem(entry);
-
-                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getFairyRing() == fairyRing)
-                {
-                    fairyRingDropdown.setSelectedItem(entry);
-                }
-            });
+            createItemEntry(fairyRing, fairyRingDropdown, fairyRing.getItemID());
         }
-        AutoCompletion.enable(fairyRingDropdown);
-        fairyRingDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof FairyRing)
-                {
-                    final FairyRing item = (FairyRing) source.getData();
-                    log.debug("selected fairy ring tele: {}", item);
-                    log.debug("teles? {}", Transportation.FAIRY_RING_TELEPORT_MAP.get(item));
-                    updateEditorIcon(source);
-                    updateTeleportDropdown(Transportation.FAIRY_RING_TELEPORT_MAP.get(item));
-                }
-            }
-        });
+        fairyRingDropdown.addItemListener(this::entrySelected);
 
-        spiritTreeDropdown = new ComboBoxIcon("Select a Fairy Ring...");
+        // Spirit Tree Dropdown (2nd row)
+        spiritTreeDropdown = new ComboBoxIcon("Select a Spirit Tree...");
         for (final SpiritTree spiritTree : SpiritTree.values())
         {
-            AsyncBufferedImage icon = itemManager.getImage(spiritTree.getItemID());
-            icon.onLoaded(() ->
-            {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
-                        spiritTree.getName(),
-                        spiritTree
-                );
-                spiritTreeDropdown.addItem(entry);
-
-                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getSpiritTree() == spiritTree)
-                {
-                    spiritTreeDropdown.setSelectedItem(entry);
-                }
-            });
+            createItemEntry(spiritTree, spiritTreeDropdown, spiritTree.getItemID());
         }
-        spiritTreeDropdown.addItemListener(e ->
-        {
-            if (e.getStateChange() == ItemEvent.SELECTED)
-            {
-                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
-                if (source.getData() instanceof SpiritTree)
-                {
-                    final SpiritTree item = (SpiritTree) source.getData();
-                    log.debug("selected spirit tree tele: {}", item);
-                    log.debug("teles? {}", Transportation.SPIRIT_TREE_TELEPORT_MAP.get(item));
-                    updateTeleportDropdown(Transportation.SPIRIT_TREE_TELEPORT_MAP.get(item));
-                }
-            }
-        });
+        spiritTreeDropdown.addItemListener(this::entrySelected);
 
+        // Transportation Dropdown (3rd row)
+        teleportDropdown = new ComboBoxIcon("Select a Teleport...");
+        teleportDropdown.setEnabled(true);
+        teleportDropdown.addItemListener(this::entrySelected);
 
         dropdownOneContainer.add(spellbookDropdown, SPELLBOOK_DROPDOWN_NAME);
         dropdownOneContainer.add(groupingDropdown, GROUPING_DROPDOWN_NAME);
@@ -390,6 +182,102 @@ public class ClueStrategyEditPanel extends JPanel
         constraints.gridy++;
 
         init = false;
+    }
+
+    private void createItemEntry(Object o, JComboBox<ComboBoxIconEntry> dropdown, int itemID)
+    {
+        AsyncBufferedImage icon = itemManager.getImage(itemID);
+        icon.onLoaded(() ->
+        {
+            final ComboBoxIconEntry entry = new ComboBoxIconEntry(
+                    new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
+                    o.toString(),
+                    o
+            );
+            dropdown.addItem(entry);
+        });
+    }
+
+    private void createSpriteEntry(Object o, JComboBox<ComboBoxIconEntry> dropdown, int spriteID)
+    {
+        spriteManager.getSpriteAsync(spriteID, 0, sprite ->
+        {
+            final ComboBoxIconEntry entry = new ComboBoxIconEntry(
+                    new ImageIcon(sprite.getScaledInstance(COMBO_BOX_SPRITE_WIDTH, COMBO_BOX_SPRITE_HEIGHT, Image.SCALE_SMOOTH)),
+                    o.toString(),
+                    o
+            );
+            dropdown.addItem(entry);
+        });
+    }
+
+    private void entrySelected(ItemEvent itemEvent)
+    {
+        if (itemEvent.getStateChange() == ItemEvent.SELECTED)
+        {
+            if (!(itemEvent.getItem() instanceof ComboBoxIconEntry))
+            {
+                log.error("selected not a ComboboxEntry??? {}", itemEvent.getItem());
+                return;
+            }
+
+            final ComboBoxIconEntry source = (ComboBoxIconEntry) itemEvent.getItem();
+            Object data = source.getData();
+            if (data instanceof SpiritTree)
+            {
+                final SpiritTree item = (SpiritTree) data;
+                log.debug("selected spirit tree tele: {}", item);
+                log.debug("teles? {}", Transportation.SPIRIT_TREE_TELEPORT_MAP.get(item));
+                updateTeleportDropdown(Transportation.SPIRIT_TREE_TELEPORT_MAP.get(item));
+            }
+            else if (data instanceof FairyRing)
+            {
+                final FairyRing item = (FairyRing) data;
+                log.debug("selected fairy ring tele: {}", item);
+                log.debug("teles? {}", Transportation.FAIRY_RING_TELEPORT_MAP.get(item));
+                // updateEditorIcon(source);
+                updateTeleportDropdown(Transportation.FAIRY_RING_TELEPORT_MAP.get(item));
+            }
+            else if (data instanceof TeleportItem)
+            {
+                final TeleportItem item = (TeleportItem) data;
+                log.debug("selected item tele: {}", item);
+                log.debug("teles? {}", Transportation.ITEM_TELEPORT_MAP.get(item));
+                updateEditorIcon(source);
+                updateTeleportDropdown(Transportation.ITEM_TELEPORT_MAP.get(item));
+            }
+            else if (data instanceof PohTeleport)
+            {
+                final PohTeleport pohTeleport = (PohTeleport) data;
+                log.debug("selected poh tele: {}", pohTeleport);
+                log.debug("teles? {}", Transportation.POH_TELEPORT_MAP.get(pohTeleport));
+                updateTeleportDropdown(Transportation.POH_TELEPORT_MAP.get(pohTeleport));
+            }
+            else if (data instanceof Grouping)
+            {
+                final Grouping grouping = (Grouping) data;
+                log.debug("selected item tele: {}", grouping);
+                ///selectGrouping(grouping);
+                updateTeleportDropdown(Transportation.GROUPING_TELEPORT_MAP.get(grouping));
+            }
+            else if (data instanceof Spellbook)
+            {
+                final Spellbook spellbook = (Spellbook) data;
+                log.debug("selected sb: {}", spellbook);
+                updateTeleportDropdown(Transportation.SPELLBOOK_TELEPORT_MAP.get(spellbook));
+            }
+            else if (data instanceof Transportation)
+            {
+                final Transportation transportation = (Transportation) data;
+                log.debug("selected tele: {}", transportation);
+            }
+            else if (data instanceof TransportationMethod)
+            {
+                final TransportationMethod transportation = (TransportationMethod) data;
+                log.debug("selected sb: {}", transportation);
+                selectTransportationMethod(transportation);
+            }
+        }
     }
 
     private void loadTeleports()
@@ -484,10 +372,6 @@ public class ClueStrategyEditPanel extends JPanel
         for (final Transportation transportation : transportations)
         {
             teleportDropdown.addItem(teleportEntries.get(transportation));
-            if (init && clueStrategy.getTransportation() != null && transportation == clueStrategy.getTransportation())
-            {
-                teleportDropdown.setSelectedItem(teleportEntries.get(transportation));
-            }
         }
         dropdownTwoLayout.show(dropdownTwoContainer, SPELL_DROPDOWN_NAME);
         dropdownTwoContainer.setVisible(true);

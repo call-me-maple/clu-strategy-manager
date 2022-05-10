@@ -1,4 +1,4 @@
-package cluestrategymanager.ui;
+package cluestrategymanager.ui.combobox;
 
 import java.awt.Color;
 import java.awt.Component;

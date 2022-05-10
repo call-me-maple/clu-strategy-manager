@@ -1,4 +1,4 @@
-package cluestrategymanager.data;
+package cluestrategymanager.data.clue;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSortedSet;

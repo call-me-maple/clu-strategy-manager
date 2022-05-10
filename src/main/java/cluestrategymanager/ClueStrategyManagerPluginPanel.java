@@ -1,7 +1,9 @@
-package cluestrategymanager.ui;
+package cluestrategymanager;
 
 import cluestrategymanager.ClueStrategyManagerConfig;
 import cluestrategymanager.ClueStrategyManagerPlugin;
+import cluestrategymanager.ui.ClueTierPanel;
+import cluestrategymanager.ui.Tab;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
