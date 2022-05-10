@@ -38,12 +38,16 @@ public class ClueStrategyEditPanel extends JPanel
     private final JComboBox<ComboBoxIconEntry> groupingDropdown;
     private final JComboBox<ComboBoxIconEntry> pohDropdown;
     private final JComboBox<ComboBoxIconEntry> itemDropdown;
+    private final JComboBox<ComboBoxIconEntry> fairyRingDropdown;
+    private final JComboBox<ComboBoxIconEntry> spiritTreeDropdown;
 
     private final static String SPELLBOOK_DROPDOWN_NAME = "SPELLBOOK_DROPDOWN";
     private final static String GROUPING_DROPDOWN_NAME = "GROUPING_DROPDOWN";
     private final static String POH_DROPDOWN_NAME = "POH_DROPDOWN";
     private final static String ITEM_DROPDOWN_NAME = "ITEM_DROPDOWN";
     private final static String SPELL_DROPDOWN_NAME = "SPELL_DROPDOWN";
+    private final static String FAIRY_RING_DROPDOWN_NAME = "FAIRY_RING_DROPDOWN";
+    private final static String SPIRIT_TREE_DROPDOWN_NAME = "SPIRIT_TREE_DROPDOWN";
 
     private final CardLayout dropdownOneLayout = new CardLayout();
     private final JPanel dropdownOneContainer = new JPanel(dropdownOneLayout);
@@ -69,20 +73,42 @@ public class ClueStrategyEditPanel extends JPanel
         transportationDropdown = new ComboBoxIcon("Select a Transport...");
         for (final TransportationMethod transportation : TransportationMethod.values())
         {
-            spriteManager.getSpriteAsync(transportation.getSpriteID(), 0, sprite ->
+            // TODO figure out something better here
+            if (transportation.getSpriteID() != -1)
             {
-                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
-                        new ImageIcon(sprite.getScaledInstance(COMBO_BOX_SPRITE_WIDTH, COMBO_BOX_SPRITE_HEIGHT, Image.SCALE_SMOOTH)),
-                        transportation.getName(),
-                        transportation
-                );
-                transportationDropdown.addItem(entry);
-
-                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getTransportationMethod() == transportation)
+                spriteManager.getSpriteAsync(transportation.getSpriteID(), 0, sprite ->
                 {
-                    transportationDropdown.setSelectedItem(entry);
-                }
-            });
+                    final ComboBoxIconEntry entry = new ComboBoxIconEntry(
+                            new ImageIcon(sprite.getScaledInstance(COMBO_BOX_SPRITE_WIDTH, COMBO_BOX_SPRITE_HEIGHT, Image.SCALE_SMOOTH)),
+                            transportation.getName(),
+                            transportation
+                    );
+                    transportationDropdown.addItem(entry);
+
+                    if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getTransportationMethod() == transportation)
+                    {
+                        transportationDropdown.setSelectedItem(entry);
+                    }
+                });
+            }
+            else if (transportation.getItemID() != -1)
+            {
+                AsyncBufferedImage icon = itemManager.getImage(transportation.getItemID());
+                icon.onLoaded(() ->
+                {
+                    final ComboBoxIconEntry entry = new ComboBoxIconEntry(
+                            new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
+                            transportation.getName(),
+                            transportation
+                    );
+                    transportationDropdown.addItem(entry);
+
+                    if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getTransportationMethod() == transportation)
+                    {
+                        transportationDropdown.setSelectedItem(entry);
+                    }
+                });
+            }
         }
         transportationDropdown.addItemListener(e ->
         {
@@ -252,11 +278,83 @@ public class ClueStrategyEditPanel extends JPanel
             }
         });
 
+        fairyRingDropdown = new ComboBoxIcon("Select a Fairy Ring...");
+        for (final FairyRing fairyRing : FairyRing.values())
+        {
+            AsyncBufferedImage icon = itemManager.getImage(fairyRing.getItemID());
+            icon.onLoaded(() ->
+            {
+                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
+                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
+                        fairyRing.getName(),
+                        fairyRing
+                );
+                fairyRingDropdown.addItem(entry);
+
+                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getFairyRing() == fairyRing)
+                {
+                    fairyRingDropdown.setSelectedItem(entry);
+                }
+            });
+        }
+        AutoCompletion.enable(fairyRingDropdown);
+        fairyRingDropdown.addItemListener(e ->
+        {
+            if (e.getStateChange() == ItemEvent.SELECTED)
+            {
+                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
+                if (source.getData() instanceof FairyRing)
+                {
+                    final FairyRing item = (FairyRing) source.getData();
+                    log.debug("selected fairy ring tele: {}", item);
+                    log.debug("teles? {}", Transportation.FAIRY_RING_TELEPORT_MAP.get(item));
+                    updateEditorIcon(source);
+                    updateTeleportDropdown(Transportation.FAIRY_RING_TELEPORT_MAP.get(item));
+                }
+            }
+        });
+
+        spiritTreeDropdown = new ComboBoxIcon("Select a Fairy Ring...");
+        for (final SpiritTree spiritTree : SpiritTree.values())
+        {
+            AsyncBufferedImage icon = itemManager.getImage(spiritTree.getItemID());
+            icon.onLoaded(() ->
+            {
+                final ComboBoxIconEntry entry = new ComboBoxIconEntry(
+                        new ImageIcon(icon.getScaledInstance(COMBO_BOX_SPRITE_WIDTH+5, COMBO_BOX_SPRITE_HEIGHT+5, Image.SCALE_SMOOTH)),
+                        spiritTree.getName(),
+                        spiritTree
+                );
+                spiritTreeDropdown.addItem(entry);
+
+                if (clueStrategy.getTransportation() != null && clueStrategy.getTransportation().getSpiritTree() == spiritTree)
+                {
+                    spiritTreeDropdown.setSelectedItem(entry);
+                }
+            });
+        }
+        spiritTreeDropdown.addItemListener(e ->
+        {
+            if (e.getStateChange() == ItemEvent.SELECTED)
+            {
+                final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
+                if (source.getData() instanceof SpiritTree)
+                {
+                    final SpiritTree item = (SpiritTree) source.getData();
+                    log.debug("selected spirit tree tele: {}", item);
+                    log.debug("teles? {}", Transportation.SPIRIT_TREE_TELEPORT_MAP.get(item));
+                    updateTeleportDropdown(Transportation.SPIRIT_TREE_TELEPORT_MAP.get(item));
+                }
+            }
+        });
+
 
         dropdownOneContainer.add(spellbookDropdown, SPELLBOOK_DROPDOWN_NAME);
         dropdownOneContainer.add(groupingDropdown, GROUPING_DROPDOWN_NAME);
         dropdownOneContainer.add(pohDropdown, POH_DROPDOWN_NAME);
         dropdownOneContainer.add(itemDropdown, ITEM_DROPDOWN_NAME);
+        dropdownOneContainer.add(fairyRingDropdown, FAIRY_RING_DROPDOWN_NAME);
+        dropdownOneContainer.add(spiritTreeDropdown, SPIRIT_TREE_DROPDOWN_NAME);
         dropdownOneContainer.setVisible(false);
 
         dropdownTwoContainer.add(teleportDropdown, SPELL_DROPDOWN_NAME);
@@ -350,7 +448,6 @@ public class ClueStrategyEditPanel extends JPanel
 
     private void selectTransportationMethod(TransportationMethod transportation)
     {
-        //resetDropdowns();
         dropdownOneContainer.setVisible(true);
         dropdownTwoContainer.setVisible(false);
 
@@ -369,6 +466,12 @@ public class ClueStrategyEditPanel extends JPanel
                 break;
             case PLAYER_OWNED_HOUSE:
                 dropdownOneLayout.show(dropdownOneContainer, POH_DROPDOWN_NAME);
+                break;
+            case FAIRY_RING:
+                dropdownOneLayout.show(dropdownOneContainer, FAIRY_RING_DROPDOWN_NAME);
+                break;
+            case SPIRIT_TREE:
+                dropdownOneLayout.show(dropdownOneContainer, SPIRIT_TREE_DROPDOWN_NAME);
                 break;
         }
     }
