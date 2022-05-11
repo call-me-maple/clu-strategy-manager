@@ -113,7 +113,7 @@ public class ClueStrategyEditPanel extends JPanel
         pohDropdown.addItemListener(this::entrySelected);
 
         // Teleport Item Dropdown (2nd row)
-        itemDropdown = new ComboBoxIcon("Select an Item...", true, true);
+        itemDropdown = new ComboBoxIcon("", true, true);
         for (final TeleportItem teleportItem : TeleportItem.values())
         {
             createItemEntry(teleportItem, itemDropdown, teleportItem.getItemID());
@@ -243,7 +243,7 @@ public class ClueStrategyEditPanel extends JPanel
                 final TeleportItem item = (TeleportItem) data;
                 log.debug("selected item tele: {}", item);
                 log.debug("teles? {}", Transportation.ITEM_TELEPORT_MAP.get(item));
-                updateEditorIcon(source);
+                updateEditorIcon(itemDropdown, source);
                 updateTeleportDropdown(Transportation.ITEM_TELEPORT_MAP.get(item));
             }
             else if (data instanceof PohTeleport)
@@ -319,9 +319,9 @@ public class ClueStrategyEditPanel extends JPanel
     }
 
 
-    private void updateEditorIcon(ComboBoxIconEntry entry)
+    private void updateEditorIcon(JComboBox<ComboBoxIconEntry> dropdown, ComboBoxIconEntry entry)
     {
-        ComboBoxEditor editor = itemDropdown.getEditor();
+        ComboBoxEditor editor = dropdown.getEditor();
         JTextField textField = (JTextField) editor.getEditorComponent();
 
         Border currentBorder = textField.getBorder();
